@@ -5,34 +5,49 @@ class Array {
 
   public Array(int size) {
     arr = new int[size];
+    for (int i = 0; i < arr.length; i++) {
+      arr[i] = Integer.MIN_VALUE;
+    }
   }
 
   public void insert(int index, int value) {
     try {
-      if (arr[index] == 0) {
+      if (arr[index] == Integer.MIN_VALUE) {
         arr[index] = value;
-      } else
+      } else {
         System.out.println("The cell is already occupied");
+      }
     } catch (Exception e) {
-      System.out.println("Inavid index , index out of bounds of the array");
+      System.out.println("Invalid index, index out of bounds of the array");
     }
   }
 
   public void getElementAtIndex(int index) {
     try {
+      Boolean isArrayEmpty = getArrStatus();
+      if (isArrayEmpty) {
+        System.out.println("The array is empty");
+        return;
+      } 
       System.out.println("The element at index " + index + " is " + arr[index]);
     } catch (Exception e) {
-      System.out.println("Inavid index , index out of bounds of the array or Array is empty");
-    }
+        System.out.println("Invalid index, index out of bounds of the array");
+    } 
   }
 
   public void display() {
     try {
       Boolean isArrEmpty = getArrStatus();
       if (isArrEmpty) {
-        throw (new Exception("Array is empty"));
+        throw new Exception("Array is empty");
       }
-      System.out.println(Arrays.toString(arr));
+      System.out.print("[ ");
+      for (int i = 0; i < arr.length; i++) {
+        if (arr[i] != Integer.MIN_VALUE) {
+          System.out.print(arr[i] + " ");
+        }
+      }
+      System.out.print("]");
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -40,10 +55,10 @@ class Array {
 
   private Boolean getArrStatus() {
     for (int i = 0; i < arr.length; i++) {
-      if (arr[i] != 0)
+      if (arr[i] != Integer.MIN_VALUE) {
         return false;
+      }
     }
-
     return true;
   }
 }
