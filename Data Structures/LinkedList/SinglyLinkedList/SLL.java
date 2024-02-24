@@ -80,6 +80,45 @@ class SLL {
 		}
 	}
 
+	public void deleteNode(int value) {
+		if(size == 0) {
+			System.out.println("Linked List Empty");
+			return;
+		}
+
+		Node cur = this.head.next;
+		Node prev = this.head;
+		while(cur != null){
+			if(cur.value == value) {
+				prev.next = cur.next;
+				System.out.println("Successfully Deleted");
+				return;
+			}
+
+			prev = cur;
+			cur = cur.next;
+		}
+
+		System.out.println("The value does not exist");
+	}
+
+	public boolean search(int value) {
+                if(size == 0) {
+                        return false;
+                }
+
+                Node cur = this.head.next;
+                while(cur != null){
+                        if(cur.value == value) {
+                                return true;
+                        }
+
+                        cur = cur.next;
+                }
+
+		return false;
+        }
+
 	public void display() {
 
 		if(size == 0) {
