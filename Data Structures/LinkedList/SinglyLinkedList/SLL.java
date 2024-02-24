@@ -49,6 +49,37 @@ class SLL {
 		}
 	}
 
+
+	// O(N)
+	public void insertNodeAtIndex(int index,int value) {
+		try {
+			if(index < 0 || index > size) {
+				System.out.println("Invalid index");
+			}
+
+			size++;
+			Node cur = this.head.next;
+			Node prev = this.head;
+			int id = 0;
+			while(cur.next != null) {
+				if(id == index)
+				{
+					Node node = new Node(value,prev.next);
+					prev.next = node;
+					return;
+				}
+
+				id++;
+				prev = cur;
+				cur = cur.next;
+				
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Memory Error");
+		}
+	}
+
 	public void display() {
 
 		if(size == 0) {
@@ -60,5 +91,8 @@ class SLL {
 			System.out.print(cur.value + " -> ");
 			cur = cur.next;
 		}
+
+		System.out.print(" NULL ");
+		System.out.println();
 	}
 }
